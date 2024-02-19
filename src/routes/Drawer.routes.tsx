@@ -18,7 +18,14 @@ export default function DrawerRoutes() {
  
          <Image source={require('../../assets/menuIcon.png')}></Image>
        ),*/
-    }}>
+       
+    }} >
+     <Drawer.Screen
+        name="home"
+        component={Home}
+        options={{ drawerLabel: 'Home' }}
+        
+      />
       <Drawer.Screen
         name="seed"
         component={Seed}
@@ -29,11 +36,7 @@ export default function DrawerRoutes() {
         component={Profile}
         options={{ drawerLabel: 'Profile' }}
       />
-      <Drawer.Screen
-        name="home"
-        component={Home}
-        options={{ drawerLabel: 'home' }}
-      />
+      
     </Drawer.Navigator>
   )
 }
