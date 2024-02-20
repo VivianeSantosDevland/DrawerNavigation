@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import PessoaRepository from '../db/pessoaRepository';
+import { TypePessoa } from '../db/TypePessoa';
+
+const pessoaRepo = new PessoaRepository();
+
 
 export default function Home() {
   const [nome, setNome] = useState('');
   const [endereco, setEndereco] = useState('');
 
   function handlerEnviar() {
+    //só um teste
     const newDataTest = {
       nome,
       endereco
@@ -13,6 +19,13 @@ export default function Home() {
     console.log(newDataTest);
   }
 
+  const save = async () => {
+    const id = await pessoaRepo.create({
+      nome: nome,
+      endereco: endereco
+    });
+    console.log('Created: ', id)
+  }
 
   return (
     <View style={styles.container}>
@@ -23,7 +36,7 @@ export default function Home() {
       <TextInput placeholder='Endereço'
         onChangeText={setEndereco}
         style={styles.input}></TextInput>
-      <Button title='Enviar' onPress={handlerEnviar}></Button>
+      <Button title='Enviar' onPress={save}></Button>
     </View>
   );
 }
