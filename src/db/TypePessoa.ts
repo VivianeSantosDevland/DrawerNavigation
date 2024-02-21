@@ -4,4 +4,4 @@ interface TypePessoa{
   endereco: string
 }
 
-export {TypePessoa};
+export type {TypePessoa};

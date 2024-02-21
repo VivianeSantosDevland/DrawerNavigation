@@ -34,6 +34,16 @@ export default class PessoaRepository {
     }     
   }
   
+  public async getById(id: number){
+    try {
+      const result =  executeTransaction(
+        'SELECT * FROM pessoa where id=?',
+        [id]);
+        return (await result).rows.item(0) as TypePessoa;//muito cuidado com os campos da tabela
+    } catch (error) {
+      console.log('Houve um erro na transação sql: ',error);
+    }
+  }
 
   public async all(){
   try {
